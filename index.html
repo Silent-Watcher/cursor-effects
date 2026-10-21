@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Cursor | Demo</title>
+  </head>
+
+  <body>
+    <!--
+      Demo page. Everything inside <main> is only here to showcase the effects.
+      To reuse an effect, copy its folder from src/effects/ and add the data attributes
+      documented in the comments below to your own markup.
+    -->
+    <main class="grid min-h-dvh place-items-center px-5 py-10 3xl:px-30">
+      <div class="grid w-full max-w-6xl gap-6 md:grid-cols-3 3xl:max-w-none 3xl:gap-15">
+        <!--
+          CURSOR: data-cursor
+          Adds the given class names to the cursor while the pointer is over this element.
+          Built-in: -lg, -opaque, -exclusion, -normal, -inverse, -hidden.
+          Custom classes (-color-red / -color-green) are defined in src/demo.css.
+          A nested [data-cursor] adds its classes on top of the parent's.
+        -->
+        <article class="demo-card" data-cursor="-color-red">
+          <h2 class="demo-title">Set Color</h2>
+          <p class="demo-text" data-cursor="-color-green">
+            Any color via CSS class with <b>.setState('colorClass')</b> or
+            <b>[data-cursor="colorClass"]</b> attribute
+          </p>
+        </article>
+
+        <!--
+          CURSOR: data-cursor-text
+          Shows the text inside an enlarged cursor.
+        -->
+        <article class="demo-card" data-cursor-text="Hello!">
+          <h2 class="demo-title">Set Text</h2>
+          <p class="demo-text">
+            Set text with <b>.setText('Text string')</b> or <b>[data-cursor-text="Text string"]</b> attribute
+          </p>
+        </article>
+
+        <!--
+          CURSOR: data-cursor="-opaque"
+          Opaque / exclusion blend mode with a larger cursor.
+        -->
+        <article class="demo-card" data-cursor="-opaque">
+          <h2 class="demo-title">Exclusion mode</h2>
+          <p class="demo-text">
+            Exclusion or opaque mode with <b>.setState('-opaque')</b> or <b>[data-cursor="-opaque"]</b> attribute
+          </p>
+        </article>
+
+        <!--
+          CURSOR: data-cursor="-lg"
+          Multiple classes can be combined with spaces.
+        -->
+        <article class="demo-card" data-cursor="-lg">
+          <h2 class="demo-title">Set size</h2>
+          <p class="demo-text">
+            Any size via CSS class with <b>.setState('sizeClass')</b> or <b>[data-cursor="sizeClass"]</b> attribute
+          </p>
+        </article>
+
+        <!--
+          CURSOR: data-cursor-stick="selector"
+          The cursor is pulled towards the center of the element matching the selector.
+        -->
+        <article class="demo-card" data-cursor="-exclusion -lg" data-cursor-stick="#cursor-stick-area">
+          <h2 class="demo-title" id="cursor-stick-area">Stick</h2>
+          <p class="demo-text">
+            Set sticky cursor with <b>.setStick(selector)</b> or <b>[data-cursor-stick="selector"]</b> attribute
+          </p>
+        </article>
+
+        <!--
+          MAGNETIC: data-magnetic
+          The element follows the pointer while hovered and springs back on leave.
+          Optional options as JSON: data-magnetic='{"x":0.4,"y":0.4,"s":0.2,"rs":0.7}'
+        -->
+        <article class="demo-card" data-magnetic data-cursor="-opaque">
+          <h2 class="demo-title">Magnetic</h2>
+          <p class="demo-text">Magnetic via <b>[data-magnetic]</b> attribute and opaque style cursor</p>
+        </article>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

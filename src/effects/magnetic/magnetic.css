@@ -1,0 +1,8 @@
+/*
+ * Magnetic effect.
+ * The element is moved with a transform, so it gets promoted to its own layer.
+ */
+
+[data-magnetic] {
+  will-change: transform;
+}

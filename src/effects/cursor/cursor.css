@@ -1,0 +1,150 @@
+/*
+ * Custom cursor effect.
+ * Standalone: no Tailwind dependency. Theme it by overriding the --cursor-* variables.
+ *
+ * Positioning note: top/left are intentionally physical (not inset-inline-start).
+ * The cursor is moved with clientX/clientY, which are always measured from the left edge,
+ * so the element must stay anchored to the left even in RTL pages.
+ */
+
+.fx-cursor {
+  --cursor-color: #000;
+  --cursor-label-color: #fff;
+  --cursor-size: 48px;
+  --cursor-label-size: 36px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 150;
+
+  contain: layout style size;
+  pointer-events: none;
+  will-change: transform;
+
+  color: var(--cursor-color);
+  transition:
+    opacity 0.3s,
+    color 0.4s;
+
+  /* The dot */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    inline-size: var(--cursor-size);
+    block-size: var(--cursor-size);
+    translate: -50% -50%;
+    scale: 0;
+
+    background: currentColor;
+    border-radius: 50%;
+
+    transition:
+      scale 0.3s ease-in-out,
+      opacity 0.1s;
+  }
+
+  /* Text shown inside the dot */
+  .fx-cursor-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    inline-size: var(--cursor-label-size);
+    block-size: var(--cursor-label-size);
+    translate: -50% -50%;
+    scale: 0;
+    rotate: 10deg;
+
+    opacity: 0;
+    color: var(--cursor-label-color);
+
+    font-size: 1rem;
+    line-height: 1.25;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    transition:
+      opacity 0.4s,
+      scale 0.3s,
+      rotate 0.3s;
+  }
+
+  /* States */
+  &.-visible {
+    &::before {
+      scale: 0.2;
+    }
+
+    &.-active::before {
+      scale: 0.23;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.-pointer::before {
+    scale: 0.15;
+  }
+
+  &.-lg::before {
+    scale: 2;
+  }
+
+  &.-hidden::before {
+    scale: 0;
+  }
+
+  &.-inverse {
+    --cursor-color: #fff;
+  }
+
+  /* Blend modes */
+  &.-exclusion,
+  &.-opaque {
+    mix-blend-mode: exclusion;
+
+    &::before {
+      background: #fff;
+    }
+  }
+
+  &.-normal,
+  &.-text {
+    mix-blend-mode: normal;
+
+    &::before {
+      background: currentColor;
+    }
+  }
+
+  &.-text {
+    &::before {
+      opacity: 0.85;
+      scale: 1.7;
+    }
+
+    .fx-cursor-label {
+      opacity: 1;
+      scale: 1;
+      rotate: 0deg;
+    }
+
+    &.-active::before {
+      scale: 1.6;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.-opaque {
+    &::before {
+      scale: 1.32;
+    }
+
+    &.-active::before {
+      scale: 1.2;
+    }
+  }
+}

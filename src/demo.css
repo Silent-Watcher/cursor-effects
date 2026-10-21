@@ -1,0 +1,47 @@
+/* Demo-only styles: cursor color modifiers and the card look. Not needed to use the effects. */
+
+.fx-cursor {
+  &.-color-red {
+    --cursor-color: red;
+  }
+
+  &.-color-green {
+    --cursor-color: #51c67d;
+  }
+}
+
+.demo-card {
+  position: relative;
+  padding-block: 3rem;
+  padding-inline: 1.875rem;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.875rem;
+    background-color: var(--color-card);
+  }
+
+  @media (width >= 100rem) {
+    padding-block: 5.625rem;
+  }
+}
+
+.demo-title {
+  position: relative;
+  margin-block-end: 1.5rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.demo-text {
+  position: relative;
+  max-inline-size: 70%;
+  margin-inline: auto;
+  color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+}

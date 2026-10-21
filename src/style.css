@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/montserrat/wght.css';
+
+/* Design tokens. Tailwind generates utilities from these (bg-base, text-ink, font-sans, 3xl:...). */
+@theme {
+  --font-sans: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-base: #fff;
+  --color-ink: #000;
+  --color-card: #f8f8f8;
+
+  --breakpoint-3xl: 100rem;
+}
+
+@layer base {
+  html {
+    block-size: 100%;
+  }
+
+  body {
+    min-block-size: 100%;
+    background-color: var(--color-base);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-base);
+  }
+}
